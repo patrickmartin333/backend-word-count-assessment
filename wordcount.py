@@ -42,11 +42,51 @@ print_words() and print_top().
 import sys
 
 # +++your code here+++
-# Define print_words(filename) and print_top(filename) functions.
+# Define print_words(filename) and print_top(filename) functions.   --2 separate functions
 # You could write a helper utility function that reads a file
 # and builds and returns a word/count dict for it.
 # Then print_words() and print_top() can just call the utility function.
 
+
+def word_count_container(filename):
+    word_count = {}  # empty dic to house results
+    # filename will be passed as arg when called upon--alice.txt, small.txt
+    open_file = open(filename, 'r')
+    for line in open_file:
+        words = line.split()  # splits at whitespace on each line-- will give us list of words
+        for word in words:
+            word = word.lower()  # lowercases each word as per instructions
+            # checks to see if word value is in dict --  if not word_count[word] works here as well
+            if not word in word_count:
+                word_count[word] == 1
+            else:
+                word_count[word] += 1
+    return word_count
+
+
+def print_words(filename):
+    word_count = word_count_container(filename)
+    # sets words as sorted list of each key(word) in dict/container -- should I use .item() here?
+    words = sorted(word_count.keys())
+    for word in words:
+        print(word, word_count[word])  # prints both word and its count
+
+# Helper function to get the frequency count of each word -- grabs the second item (count) in each (word, count) tuple
+
+
+def get_frequency(word_count_tuple):
+    return word_count_tuple[1]
+
+
+def print_top(filename):
+    # creating word_count dict by passing in arg to helper function created above
+    word_count = word_count_container(filename)
+    # .items() on dict will give us tuples of each (word, count).  We are sorting them, and using the get_frequency callback to extract count
+    items = sorted(word_count.items(), key=get_frequency, reverse=True)
+
+    # We want to print the top 20 mostly frequently used words, so we loop through our sorted list of tuples(items)
+    for item in items[0:20]:
+        print item[0], item[1]
 ###
 
 # This basic command line argument parsing code is provided and
