@@ -86,7 +86,7 @@ def print_top(filename):
 
     # We want to print the top 20 mostly frequently used words, so we loop through our sorted list of tuples(items)
     for item in items[0:20]:
-        print item[0], item[1]
+        print(item[0], item[1])
 ###
 
 # This basic command line argument parsing code is provided and
