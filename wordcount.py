@@ -58,7 +58,7 @@ def word_count_container(filename):
             word = word.lower()  # lowercases each word as per instructions
             # checks to see if word value is in dict --  if not word_count[word] works here as well
             if not word in word_count:
-                word_count[word] == 1
+                word_count[word] = 1
             else:
                 word_count[word] += 1
     return word_count
